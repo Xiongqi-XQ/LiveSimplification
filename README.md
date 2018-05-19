@@ -1,4 +1,4 @@
-# [ScuNavScript](https://github.com/Xiongqi-XQ/ScuNavScript)
+# [LiveSimplification](https://github.com/Xiongqi-XQ/LiveSimplification)
 
 精简斗鱼直播界面
 
