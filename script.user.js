@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         斗鱼,战旗直播界面精简
+// @name         直播界面精简
 // @namespace    xiongqi
 // @version      1.2
 // @description  斗鱼,战旗直播界面精简,持续更新中
