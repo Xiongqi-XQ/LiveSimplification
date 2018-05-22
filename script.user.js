@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         直播界面精简
 // @namespace    xiongqi
-// @version      1.2
+// @version      1.4
 // @description  斗鱼,战旗直播界面精简,持续更新中
 // @author       XiongQi
 // @match        https://www.douyu.com/*
@@ -66,19 +66,23 @@
       video.style.width = '100%';
       const gift = document.getElementsByClassName('liveMessage')[0];
       gift.style.position = 'relative';
-      gift.style.width = 'unset';
+      gift.style.zIndex = 'unset';
     },
   };
   window.onload = function() {
     switch (location.host) {
       case liveConf.douyu:
-        douyuFunc.clearDOM();
-        douyuFunc.videoUI();
-        setTimeout(douyuFunc.clearDOM, 10000);
+        if (/直播间/.test(document.title)) {
+          douyuFunc.clearDOM();
+          douyuFunc.videoUI();
+          setTimeout(douyuFunc.clearDOM, 10000);
+        }
         break;
       case liveConf.zhanqi:
-        zhanqiFunc.clearDOM();
-        zhanqiFunc.videoUI();
+        if (/直播间/.test(document.title)) {
+          zhanqiFunc.clearDOM();
+          zhanqiFunc.videoUI();
+        }
         break;
       default:
         break;
