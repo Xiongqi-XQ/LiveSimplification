@@ -77,14 +77,12 @@
         // gift.style.zIndex = 'unset';}
       } else {
         const right = document.getElementById('js-right-chat-panel');
-        panel.removeChild(right)
-        panel.removeChild(document.getElementById('js-right-chat-show-btn'))
+        panel.removeChild(right);
+        panel.removeChild(document.getElementById('js-right-chat-show-btn'));
         const content = document.getElementById('js-pull-ads-layer');
         const content_bottom = document.getElementById('js-room-module-area');
-        content.style.paddingRight='50px'
-        content.style.paddingLeft='100px'
-        content.removeChild(content_bottom)
-        content.removeChild(document.getElementsByClassName('live-gg-area')[0])
+        content.removeChild(content_bottom);
+        content.removeChild(document.getElementsByClassName('live-gg-area')[0]);
         const style = document.createElement('style');
         style.innerHTML =
           '.theatre .live-room-content .video-flash-cont{width: 100% !important;height:100% !important;} .liveMessage{z-index:unset !important} .live-room-content{padding: 0 80px 0 140px;}';
