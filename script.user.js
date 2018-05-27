@@ -1,11 +1,15 @@
 // ==UserScript==
 // @name         直播界面精简
 // @namespace    xiongqi
-// @version      1.5
+// @version      1.6
 // @description  斗鱼,战旗直播界面精简,持续更新中
 // @author       XiongQi
 // @match        https://www.douyu.com/*
 // @match        https://www.zhanqi.tv/*
+// @match        https://www.huya.com/*
+// @exclude      https://www.douyu.com/
+// @exclude      https://www.zhanqi.tv/
+// @exclude      https://www.huya.com/
 // @grant        none
 // ==/UserScript==
 
@@ -15,6 +19,7 @@
   const liveConf = {
     douyu: 'www.douyu.com',
     zhanqi: 'www.zhanqi.tv',
+    huya: 'www.huya.com',
   };
   const clearDOM = function(id) {
     const child = document.body.children;
@@ -22,12 +27,12 @@
     const body = document.body;
     const list = [];
     for (let i = 0; i < leng; i++)
-      if (child.item(i).tagName === 'DIV' && child.item(i).id !== id) list.push(child.item(i));
+      if (child.item(i).tagName === 'DIV' && !id.test(child.item(i).id)) list.push(child.item(i));
     list.forEach(x => body.removeChild(x));
   };
   const douyuFunc = {
     clearDOM() {
-      clearDOM('container');
+      clearDOM(/container/);
     },
     videoUI() {
       const container = document.getElementById('container');
@@ -49,7 +54,7 @@
   };
   const zhanqiFunc = {
     clearDOM() {
-      clearDOM('js-room-super-panel');
+      clearDOM(/js-room-super-panel/);
     },
     videoUI() {
       const panel = document.getElementById('js-room-super-panel');
@@ -90,6 +95,33 @@
       }
     },
   };
+  const huyaFunc = {
+    clearDOM() {
+      clearDOM(/duya-header|J_mainWrap/);
+    },
+    videoUI() {
+      document.body.removeChild(document.getElementsByClassName('mod-sidebar')[0]);
+      const main = document.getElementById('J_mainRoom');
+      const roomCore = document.getElementsByClassName('room-core')[0];
+      main.innerHTML = '';
+      main.appendChild(roomCore);
+      document.getElementById('player-gift-wrap').removeChild(document.getElementsByClassName('player-gift-left')[0]);
+      roomCore.removeChild(roomCore.getElementsByClassName('room-core-r')[0]);
+
+      // style
+      // const mainWrap = document.getElementById('J_mainWrap');
+      const style = document.createElement('style');
+      style.innerHTML = '#J_mainWrap{padding-right:100px;padding-left:100px !important;overflow:auto;}';
+      document.body.appendChild(style);
+      mainWrap.style.paddingRight = '100px';
+      mainWrap.style.paddingLeft = '100px';
+      mainWrap.style.overflow = 'auto';
+      const roomL = roomCore.getElementsByClassName('room-core-l')[0];
+      roomL.style.margin = '0';
+      const mainCol = document.getElementById('main_col');
+      mainCol.style.overflow = 'visible';
+    },
+  };
   window.onload = function() {
     switch (location.host) {
       case liveConf.douyu:
@@ -103,6 +135,12 @@
         if (/直播间/.test(document.title)) {
           zhanqiFunc.clearDOM();
           zhanqiFunc.videoUI();
+        }
+        break;
+      case liveConf.huya:
+        if (document.getElementById('player-video')) {
+          // huyaFunc.clearDOM();
+          huyaFunc.videoUI();
         }
         break;
       default:
