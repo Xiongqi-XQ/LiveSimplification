@@ -2,7 +2,7 @@
 // @name         直播界面精简
 // @namespace    xiongqi
 // @version      1.6
-// @description  斗鱼,战旗直播界面精简,持续更新中
+// @description  斗鱼,战旗，虎牙直播界面精简,持续更新中
 // @author       XiongQi
 // @match        https://www.douyu.com/*
 // @match        https://www.zhanqi.tv/*
