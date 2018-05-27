@@ -113,9 +113,6 @@
       const style = document.createElement('style');
       style.innerHTML = '#J_mainWrap{padding-right:100px;padding-left:100px !important;overflow:auto;}';
       document.body.appendChild(style);
-      mainWrap.style.paddingRight = '100px';
-      mainWrap.style.paddingLeft = '100px';
-      mainWrap.style.overflow = 'auto';
       const roomL = roomCore.getElementsByClassName('room-core-l')[0];
       roomL.style.margin = '0';
       const mainCol = document.getElementById('main_col');
