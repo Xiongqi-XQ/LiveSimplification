@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         直播界面精简
 // @namespace    xiongqi
-// @version      1.6
-// @description  斗鱼,战旗，虎牙直播界面精简,持续更新中
+// @version      1.7
+// @description  斗鱼，战旗，虎牙直播界面精简,持续更新中
 // @author       XiongQi
 // @match        https://www.douyu.com/*
 // @match        https://www.zhanqi.tv/*
@@ -82,15 +82,16 @@
         // gift.style.zIndex = 'unset';}
       } else {
         const right = document.getElementById('js-right-chat-panel');
-        panel.removeChild(right);
-        panel.removeChild(document.getElementById('js-right-chat-show-btn'));
-        const content = document.getElementById('js-pull-ads-layer');
+        const panel2 = right.parentNode;
+        panel2.removeChild(right);
+        panel2.removeChild(document.getElementById('js-right-chat-show-btn'));
         const content_bottom = document.getElementById('js-room-module-area');
+        const content = content_bottom.parentNode;
         content.removeChild(content_bottom);
         content.removeChild(document.getElementsByClassName('live-gg-area')[0]);
         const style = document.createElement('style');
         style.innerHTML =
-          '.theatre .live-room-content .video-flash-cont{width: 100% !important;height:100% !important;} .liveMessage{z-index:unset !important} .live-room-content{padding: 0 80px 0 140px;}';
+          '.theatre .live-room-content .video-flash-cont{height:100% !important;} .video-flash-cont{width: 100% !important} .liveMessage{z-index:unset !important} .live-room-content{padding: 0;width: 100% !important}';
         document.body.appendChild(style);
       }
     },
@@ -110,6 +111,7 @@
 
       // style
       // const mainWrap = document.getElementById('J_mainWrap');
+      document.getElementById('J_roomBd').style.overflow = 'auto';
       const style = document.createElement('style');
       style.innerHTML = '#J_mainWrap{padding-right:100px;padding-left:100px !important;overflow:auto;}';
       document.body.appendChild(style);
