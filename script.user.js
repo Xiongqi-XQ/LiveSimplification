@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         直播界面精简
 // @namespace    xiongqi
-// @version      1.7
+// @version      1.8
 // @description  斗鱼，战旗，虎牙直播界面精简,持续更新中
 // @author       XiongQi
 // @match        https://www.douyu.com/*
@@ -88,7 +88,7 @@
         const content_bottom = document.getElementById('js-room-module-area');
         const content = content_bottom.parentNode;
         content.removeChild(content_bottom);
-        content.removeChild(document.getElementsByClassName('live-gg-area')[0]);
+        // content.removeChild(document.getElementsByClassName('live-gg-area')[0]);
         const style = document.createElement('style');
         style.innerHTML =
           '.theatre .live-room-content .video-flash-cont{height:100% !important;} .video-flash-cont{width: 100% !important} .liveMessage{z-index:unset !important} .live-room-content{padding: 0;width: 100% !important}';
@@ -110,10 +110,15 @@
       roomCore.removeChild(roomCore.getElementsByClassName('room-core-r')[0]);
 
       // style
-      // const mainWrap = document.getElementById('J_mainWrap');
-      document.getElementById('J_roomBd').style.overflow = 'auto';
+      const mainWrap = document.getElementById('J_mainWrap');
+      document.getElementById('J_roomBd').style.overflow = 'visible';
+
+      document.body.style.overflow = 'auto';
+      document.getElementById('duya-header').style.position = 'relative !important';
+
+      document.getElementById('player-wrap').style.height = 'calc(100% - 20px)';
       const style = document.createElement('style');
-      style.innerHTML = '#J_mainWrap{padding-right:100px;padding-left:100px !important;overflow:auto;}';
+      style.innerHTML = '#duya-header{position: relative !important} #J_mainWrap{padding:0 100px !important;overflow:visible;} .player-wrap{bottom: 0 !important}';
       document.body.appendChild(style);
       const roomL = roomCore.getElementsByClassName('room-core-l')[0];
       roomL.style.margin = '0';
